@@ -18,7 +18,7 @@ describe('LoadUserByEmail Repository', () => {
     db = MongoHelper.db
   })
 
-  afterAll(async () => {
+  beforeEach(async () => {
     await db.collection('users').deleteMany()
   })
 
@@ -34,7 +34,7 @@ describe('LoadUserByEmail Repository', () => {
 
   test('Should return a user if user is found', async () => {
     const { sut, userModel } = makeSut()
-     await userModel.insertOne({
+    await userModel.insertOne({
       email: 'valid_email@mail.com',
       name: 'any_name',
       age: 50,
